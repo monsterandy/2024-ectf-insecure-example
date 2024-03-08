@@ -400,11 +400,18 @@ int validate_pin() {
 int validate_token() {
     char buf[50];
     recv_input("Enter token: ", buf);
+
+    print_info("validate_token, strlen=%d, toekn received\n", strlen(buf));
+    print_hex_info((uint8_t *) buf, strlen(buf) + 1);
+    print_info("AP_TOKEN=%s\n", AP_TOKEN);
+
     if (!strcmp(buf, AP_TOKEN)) {
         print_debug("Token Accepted!\n");
+        print_info("Token Accepted!\n");
         return SUCCESS_RETURN;
     }
     print_error("Invalid Token!\n");
+    print_info("Invalid Token!\n");
     return ERROR_RETURN;
 }
 
